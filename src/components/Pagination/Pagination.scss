@@ -1,0 +1,50 @@
+@import '../../sassStyles/variables';
+
+.paginationButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 3rem;
+
+    a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        margin: .25rem;
+        width: 1.55rem;
+        height: 1.5rem;
+        text-align: center;
+        background-color: $palette-white-smoke;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: darken($palette-white-smoke, 5%);
+        }
+    }
+
+    .prevButton,
+    .nextButton {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 1.5rem;
+        width: 2rem;
+        color: $palette-black-bean;
+        text-decoration: none;
+    }
+
+    .paginationDisabled a {
+        color: darken($palette-white-smoke, 25%);
+    }
+
+    .paginationActive {
+        color: $palette-white;
+
+        a {
+            background-color: $palette-dodger-blue;
+        }
+    }
+}

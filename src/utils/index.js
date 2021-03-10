@@ -1,41 +1,53 @@
-import { http_get } from '../services'
-
-export const generatePagination = (data, pageSize, pageNumber) => {
-  try {
-    const items = []
-    let pageCount = Math.ceil(data.length / pageSize)
-    if (pageCount < 2) return []
-
-    let counter = 0
-    let startCount = 1
-
-    if (pageNumber >= 3) startCount = pageNumber - 2
-    if (pageCount >= 5 && pageCount - startCount < 5) startCount = pageCount - 4
-
-    for (let i = startCount; i < pageCount + 1; i++) {
-      if (counter >= 5) break
-
-      items.push(i)
-      counter++
-    }
-    return items
-  } catch (error) {
-    return []
-  }
-}
+import { http_get, http_delete, http_patch } from '../services';
 
 export const httpGet = async (param, setState, state) => {
   try {
     const request = await http_get(param);
-    const {data, status} = request;
+    const { data, status } = request;
 
-    if(status === 200 ) {
-      setState(data)
+    if (status === 200) {
+      setState(data);
     } else {
-      console.log(request)
+      console.log(request);
     }
-
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
+
+/// API ile ilgili DELETE ve PATCH request'lerde sorun var sanırım, o yüzden bu şekilde bıraktım
+
+export const httpDelete = async (id) => {
+  try {
+    const request = await http_delete(`/todos/${id}`);
+    const { data, status } = request;
+
+    if (status === 200) {
+      // console.log(request)
+    } else {
+      console.log(request);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const httpPatch = async (id, state) => {
+  try {
+    const request = await http_patch(`/todos/${id}`, {
+      data: {
+        completed: state?.completed,
+        title: state?.title,
+      },
+    });
+    const { data, status } = request;
+
+    if (status === 200) {
+      // console.log(request)
+    } else {
+      console.log(request);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};

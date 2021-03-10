@@ -10,10 +10,22 @@ body {
     font-family: $font-family;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: $color-primary-light;
+    background-color: $palette-white;
     box-sizing: border-box;
     height: 100vh;
     min-height: 100%;
+}
+
+a {
+    text-decoration: none;
+    &:focus {
+        outline: 0;
+    }
+}
+
+ul,
+li {
+    list-style-type: none;
 }
 
 #root {
